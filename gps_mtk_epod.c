@@ -29,8 +29,12 @@ int main(void) {
 
 	while(1) {
 		// this is really dirty, barebones implimentation
-		system("wget http://epodownload.mediatek.com/EPO.DAT /data/misc/");
-		system("wget http://epodownload.mediatek.com/EPO.MD5 /data/misc/");
+		if ((chdir("/data/misc/")) < 0) {
+                /* Log any failure here */
+                exit(EXIT_FAILURE);
+        }
+		system("wget http://epodownload.mediatek.com/EPO.DAT");
+		system("wget http://epodownload.mediatek.com/EPO.MD5");
 		sleep(3600); // downloads epo every 1 hour
 	}
 
